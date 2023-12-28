@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.BookModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<h1>Books</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3">
+            <div class="card" style="width: 14rem;">
+                @if (string.IsNullOrEmpty(item.FileName))
+                {
+                    <img src="~/Images/image1.jpg" class="card-img-top" alt="Image..." height="150" width="130">
+
+                }
+                else
+                {
+                    <img src="~/uploads/@item.FileName" class="card-img-top" alt="Image..."height="150" width="130">
+
+                }
+                <div class="card-body">
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-title">Book Name   : @item.Name</p>
+                    <p class="card-title">Author Name : @item.Author</p>
+                    <p class="card-title">Book Price  : @item.Price</p>
+                    <p class="card-title">Quantity    : @item.Quantity</p>
+                    
+                    <p class="card-title">BookCategory : @item.BookCategory.Name</p>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
